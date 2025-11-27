@@ -2,5 +2,6 @@ server:
   port: 8081
 
 message: "Service B no comando"
+
 feature:
   enable: true

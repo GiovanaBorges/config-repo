@@ -1,6 +1,7 @@
 server:
-  port: 8080
+  port: 8082
 
 message: "Olá, eu sou o Service A"
+
 limit:
   max: 10
