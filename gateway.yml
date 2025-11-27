@@ -1,2 +1,36 @@
 server:
   port: 9099
+
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          httpclient:
+            connect-timeout: 5000
+            response-timeout: 10s
+
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+      routes:
+        - id: service-a
+          uri: lb://service-a
+          predicates:
+            - Path=/a/**
+          filters:
+            - StripPrefix=1
+
+        - id: service-b
+          uri: lb://service-b
+          predicates:
+            - Path=/b/**
+          filters:
+            - StripPrefix=1
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
