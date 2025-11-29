@@ -1,22 +1,15 @@
 global:
   message: "Configuração global para todos os serviços"
 
-spring:
-  sleuth:
-    sampler:
-      probability: 1.0
-  zipkin:
-    base-url: http://localhost:9411
-    enabled: true
-
 management:
   endpoints:
     web:
       exposure:
         include: health,info,metrics,prometheus
 
-otel:
-  exporter:
-    otlp:
-      endpoint: http://localhost:4317
+management:
+    endpoints:
+        health:
+          show-details: always
+
        
