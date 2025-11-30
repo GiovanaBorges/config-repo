@@ -1,13 +1,32 @@
+server:
+  port: 8761
+
+spring:
+  cloud:
+    config:
+      enabled: true
+      fail-fast: true
+      
 management:
   endpoints:
     web:
       exposure:
-        include: health,info,metrics,prometheus
+        include: "*"
+
   endpoint:
     health:
       show-details: always
+
+  metrics:
+    enable:
+      all: true
 
   prometheus:
     metrics:
       export:
         enabled: true
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
