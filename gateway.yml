@@ -19,14 +19,14 @@ spring:
         - id: service-a
           uri: lb://service-a
           predicates:
-            - Path=/a/**
+            - Path=/api/a/**
           filters:
             - StripPrefix=1
-
+            
         - id: service-b
           uri: lb://service-b
           predicates:
-            - Path=/b/**
+            - Path=/api/b/**
           filters:
             - StripPrefix=1
 
