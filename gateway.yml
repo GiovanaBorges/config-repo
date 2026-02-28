@@ -10,25 +10,25 @@ spring:
             connect-timeout: 5000
             response-timeout: 10s
 
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
 
-      routes:
-        - id: service-a
-          uri: lb://service-a
-          predicates:
-            - Path=/api/a/**
-          filters:
-            - StripPrefix=1
-            
-        - id: service-b
-          uri: lb://service-b
-          predicates:
-            - Path=/api/b/**
-          filters:
-            - StripPrefix=1
+          routes:
+            - id: service-a
+              uri: lb://service-a
+              predicates:
+                - Path=/api/a/**
+              filters:
+                - RewritePath=/api/a/(?<segment>.*), /api/${segment}
+                    
+            - id: service-b
+              uri: lb://service-b
+              predicates:
+                - Path=/api/b/**
+              filters:
+                - RewritePath=/api/b/(?<segment>.*), /api/${segment}
 
 eureka:
   client:
